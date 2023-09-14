@@ -3,37 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <AutoCompleteTextView
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:completionThreshold="1"
+    />
+
     <ListView
         android:id="@+id/citiesList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_below="@id/edit"
+        android:layout_marginTop="10dp"
     />
 
-    <Spinner
-        android:id="@+id/studentsSpinner"
+    <RelativeLayout
+        android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:entries="@array/students"
-    />
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/citiesList"
+    >
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nothing is selected"
+        />
+        <Spinner
+            android:id="@+id/studentsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+        />
+    </RelativeLayout>
 
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:numColumns="2"
+        android:layout_below="@+id/spinner"
     />
-
-    <AutoCompleteTextView
-        android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gridView"
-        android:layout_marginTop="10dp"
-    />
-<!--        android:completionThreshold="3"-->
 
 </RelativeLayout>
