@@ -45,14 +45,9 @@
         <RadioButton
             android:id="@+id/radioButton8"
             android:layout_width="196dp"
-            android:layout_height="23dp"
+            android:layout_height="36dp"
             android:text="@string/button_paypal" />
 
-        <RadioButton
-            android:id="@+id/radioButton9"
-            android:layout_width="196dp"
-            android:layout_height="28dp"
-            android:text="@string/button_direct" />
     </RadioGroup>
 
     <NumberPicker
@@ -116,5 +111,13 @@
         android:layout_height="19dp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         tools:ignore="MissingConstraints" />
+
+    <RadioButton
+        android:id="@+id/radioButton9"
+        android:layout_width="196dp"
+        android:layout_height="28dp"
+        android:text="@string/button_direct"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="207dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
