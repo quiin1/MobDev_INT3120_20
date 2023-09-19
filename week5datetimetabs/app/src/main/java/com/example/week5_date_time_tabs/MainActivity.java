@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -33,9 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         spec = tabs.newTabSpec("tag2");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("2-Login");
+        spec.setIndicator("2-Login", getResources().getDrawable(R.drawable.ic_menu_info));
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
+
+        Button btnGo = (Button) findViewById(R.id.btnGo);
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                EditText txtPerson = (EditText) findViewById(R.id.txtPerson);
+                String theUser = txtPerson.getText().toString();
+                txtPerson.setText("Hola " + theUser);
+            }
+        });
     }
 }
