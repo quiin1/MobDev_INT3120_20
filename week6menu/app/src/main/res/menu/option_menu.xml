@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/miSettings"
+        android:title="Settings"
+        app:showAsAction="collapseActionView">
+
+        <menu>
+            <item
+                android:id="@+id/submenu1"
+                android:title="Settings1.1" />
+            <item
+                android:id="@+id/submenu2"
+                android:title="Settings1.2" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/miFavourites"
+        android:title="Favourites" />
+    <item
+        android:id="@+id/miContact"
+        android:title="Contact" />
+
+</menu>

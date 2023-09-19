@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/download"
+        android:title="Download image" />
+    <item
+        android:id="@+id/open"
+        android:title="Open image in new tab" />
+    <item
+        android:id="@+id/search"
+        android:title="Search Google for this image" />
+    <item
+        android:id="@+id/share"
+        android:title="Share image" />
+</menu>
