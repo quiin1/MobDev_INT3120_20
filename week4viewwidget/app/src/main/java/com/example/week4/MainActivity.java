@@ -1,15 +1,21 @@
 package com.example.week4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,15 +89,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
-                    // Toast.makeText(MainActivity.this, students.get(position-1) + " Selected", Toast.LENGTH_SHORT).show();
-                    text.setText(students.get(position-1));
+                     Toast.makeText(MainActivity.this, students.get(position-1) + " Selected", Toast.LENGTH_SHORT).show();
+//                    text.setText(students.get(position-1));
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
-                text.setText("");
+                 Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+//                text.setText("");
             }
         });
 
@@ -135,5 +141,29 @@ public class MainActivity extends AppCompatActivity {
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 cities
         ));
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu); // inflate your menu resource (defined in XML) into the Menu provided in the callback.
+
+        MenuItem menuItem = menu.findItem(R.id.list_view);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.list_view) {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.donation) {
+            Intent intent = new Intent(MainActivity.this, DonationActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.essentials) {
+            Intent intent = new Intent(MainActivity.this, EssentialsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

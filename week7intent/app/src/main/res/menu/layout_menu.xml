@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/intent"
+        android:title="Intent" />
+    <item
+        android:id="@+id/intentFilter"
+        android:title="Intent Filter" />
+    <item
+        android:id="@+id/sendMessages"
+        android:title="Send messages" />
+</menu>

@@ -33,7 +33,6 @@ public class IntentActivity extends AppCompatActivity {
         String geoCode2 = "geo:41.5020952,-81.6789717";
         Intent geoIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoCode));
 
-        Intent musicIntent = new Intent("android.intent.action.MUSIC_PLAYER");
-        startActivity(musicIntent);
+
     }
 }
