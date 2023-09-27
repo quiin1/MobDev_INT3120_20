@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/intent"
-        android:title="Intent" />
-    <item
-        android:id="@+id/intentFilter"
-        android:title="Intent Filter" />
+        android:title="Search Intent" />
     <item
         android:id="@+id/sendMessages"
         android:title="Send messages" />
+    <item
+        android:id="@+id/music"
+        android:title="Music" />
 </menu>

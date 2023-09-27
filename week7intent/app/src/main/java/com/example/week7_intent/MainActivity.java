@@ -75,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.layout_menu, menu); // inflate your menu resource (defined in XML) into the Menu provided in the callback.
-
-        MenuItem menuItem = menu.findItem(R.id.intent);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -89,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (id == R.id.sendMessages) {
             Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.music) {
+            Intent intent = new Intent(MainActivity.this, MusicActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
