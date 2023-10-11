@@ -6,24 +6,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
     private MyBroadcastReceiver broadcast;
+    private boolean isReceiverRegistered = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        broadcast = new MyBroadcastReceiver();
-        // đăng ký lắng nghe action bật/tắt chế độ máy bay
-        IntentFilter filter = new IntentFilter("android.intent.action.AIRPLANE_MODE");
-        // truyền vào class MyBroadcastReceiver
-        // để thông báo với hệ thống là ỨD đang lắng nghe sự thay đổi của action mà ta vừa đăng ký
-        // và trả về kq qua hàm onReceive trong class broadcast
-        registerReceiver(broadcast, filter);
+//        broadcast = new MyBroadcastReceiver();
+//        isReceiverRegistered = true;
+//        // đăng ký lắng nghe action bật/tắt chế độ máy bay
+//        IntentFilter filter = new IntentFilter("android.intent.action.AIRPLANE_MODE");
+//        // truyền vào class MyBroadcastReceiver
+//        // để thông báo với hệ thống là ỨD đang lắng nghe sự thay đổi của action mà ta vừa đăng ký
+//        // và trả về kq qua hàm onReceive trong class broadcast
+//        registerReceiver(broadcast, filter);
     }
 
     @Override
@@ -33,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
      */
     protected void onStop() {
         super.onStop();
-        unregisterReceiver(broadcast);
+        if (isReceiverRegistered) {
+            unregisterReceiver(broadcast);
+            Log.d("Receiver", "Broadcast Receiver stop!!!");
+        } else {
+            Log.d("Receiver", "Broadcast Receiver is not available!");
+        }
     }
 
     @Override

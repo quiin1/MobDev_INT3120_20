@@ -28,7 +28,7 @@
             android:name=".MyBroadcastReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
     </application>
