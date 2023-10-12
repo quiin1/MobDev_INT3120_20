@@ -2,48 +2,86 @@ package com.example.slide12devices_sensors;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class BluetoothActivity extends AppCompatActivity {
+import java.util.Set;
 
+/** TODO: FIX 5. Discovery Bluetooth devices */
+// https://www.youtube.com/watch?v=KfM5N6m10kY
+public class BluetoothActivity extends AppCompatActivity {
+    Button btnTurnOn, btnTurnOff, btnShowList;
+    TextView listDevicesView;
+    Set<BluetoothDevice> ad;
+    private static final int REQUEST_ENABLE_BLUETOOTH = 2;
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
 
-        /** TODO: 5. Discovery Bluetooth devices */
+        btnTurnOn = findViewById(R.id.btnTurnOn);
+        btnTurnOff = findViewById(R.id.btnTurnOff);
+        btnShowList = findViewById(R.id.btnShowList);
+        listDevicesView = findViewById(R.id.textView);
+
+        // Create object of BluetoothAdapter class
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // Get SCAN MODE
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            // TO-DO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        if (bluetoothAdapter == null) {
+            Toast.makeText(BluetoothActivity.this, "Bluetooth is not supported!!!", Toast.LENGTH_LONG).show();
+        } else {
+            // Get Scan Mode
+            int scanMode = bluetoothAdapter.getScanMode();
+            Toast.makeText(this, "scan mode: " + scanMode, Toast.LENGTH_SHORT).show();
         }
-        int scanMode = bluetoothAdapter.getScanMode();
-        Toast.makeText(this, "scan mode: " + scanMode, Toast.LENGTH_SHORT).show();
 
+        // Enable Bluetooth
+        btnTurnOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!bluetoothAdapter.isEnabled()) {
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(intent, REQUEST_ENABLE_BLUETOOTH);
+                }
+            }
+        });
+
+        // Disable Bluetooth
+        btnTurnOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bluetoothAdapter.disable();
+            }
+        });
+
+        // Show the list of Bonded Bluetooth devices
+        btnShowList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StringBuilder listDevicesSb = new StringBuilder();
+                ad = bluetoothAdapter.getBondedDevices();
+                for (BluetoothDevice temp: ad) {
+                    listDevicesSb.append("\n" + temp.getName() + "\n");
+                }
+                listDevicesView.setText(listDevicesSb.toString());
+            }
+        });
         // Discovery
-        if (bluetoothAdapter.isEnabled()) {
-            bluetoothAdapter.startDiscovery();
-        }
-
-
+//        if (bluetoothAdapter.isEnabled()) {
+//            bluetoothAdapter.startDiscovery();
+//        }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,12 +17,14 @@ import android.widget.Button;
 
 public class CameraActivity extends AppCompatActivity {
     Button btnStartIntentCamera;
+    Button btnStartIntentVideo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
         /** TODO: 4.1. Chụp ảnh bằng Intent hoặc dùng lớp Camera */
+        // TODO: CODE thầy muốn chụp ảnh ko cần xác nhận mà lưu luôn / tự chụp tự lưu gì đó
         btnStartIntentCamera = findViewById(R.id.btnStartIntentCamera);
         btnStartIntentCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,16 +35,27 @@ public class CameraActivity extends AppCompatActivity {
         });
 
         /** TODO: 4.2. Quay video = Intent hoặc lớp MediaRecorder */
-        btnStartIntentCamera = findViewById(R.id.btnStartIntentCamera);
-        btnStartIntentCamera.setOnClickListener(new View.OnClickListener() {
+        btnStartIntentVideo = findViewById(R.id.btnStartIntentVideo);
+        btnStartIntentVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 startActivity(intent);
             }
         });
 
-        /** TODO: 4.3. Ghi âm = lớp MediaRecorder */
+        /** TODO: FIX 4.3. Ghi âm = lớp MediaRecorder */
+//        MediaRecorder recorder = new MediaRecorder();
+//        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//        recorder.setOutputFile(PATH_NAME);
+//        recorder.prepare();
+//        recorder.start();   // Recording is now started
+// ...
+//        recorder.stop();
+//        recorder.reset();   // You can reuse the object by going back to setAudioSource() step
+//        recorder.release(); // Now the object cannot be reused
     }
 
     @Override
