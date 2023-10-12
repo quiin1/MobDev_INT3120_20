@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/multimedia"
+        android:title="Multimedia"/>
+    <item
+        android:id="@+id/location"
+        android:title="Định vị"/>
+    <item
+        android:id="@+id/ggmaps"
+        android:title="Google Maps"/>
+
+</menu>
