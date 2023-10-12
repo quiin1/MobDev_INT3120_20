@@ -19,17 +19,6 @@
             android:name=".IntentActivity"
             android:exported="false" />
         <activity
-            android:name=".IntentFilterActivity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.SENDTO" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="sms" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".GreetingActivity"
             android:exported="false" />
         <activity
